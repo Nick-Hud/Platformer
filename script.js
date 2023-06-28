@@ -2,6 +2,9 @@ let gameState;
 let canvusWidth
 let canvusHeight
 let player1
+let gameMode1Button
+let gameMode2Button
+let tutorialButton
 
 function preload() {
     futuraHand = loadFont('FuturaHand.ttf');
@@ -19,6 +22,12 @@ function setup() {
     gameState = "mainMenu"
     player1 = new player()
     player1.setPos(0, 40, 0)
+    gameMode1Button = new button()
+    gameMode1Button.setVal(-400, 200, "Game mode 1")
+    gameMode2Button = new button()
+    gameMode2Button.setVal(0, 200, "Game mode 2")
+    tutorialButton = new button()
+    tutorialButton.setVal(400, 200, "Tutorial")
 }
 
 function draw() {

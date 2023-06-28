@@ -4,21 +4,37 @@ function mainMenu() {
     text("PLATFORMER", 0, -300)
     pop()
     //Title
-    buttons(-400, 200, "Game mode 1")
-    buttons(0, 200, "Game mode 2")
-    buttons(400, 200, "Tutorial")
-    //Buttons
+    gameMode1Button.draw()
+    gameMode2Button.draw()
+    tutorialButton.draw()
 
 
+}
 
-    function buttons(buttonX, buttonY, buttonText) {
+
+class button {
+    constructor() {
+        let buttonX, buttonY, buttonText
+    }
+
+    setVal(buttonXInitial, buttonYInitial, buttonTextInitial) {
+        this.buttonX = buttonXInitial
+        this.buttonY = buttonYInitial
+        this.buttonText = buttonTextInitial
+
+        //mend this
+    }
+
+    draw() {
         push()
         textSize(25)
-        translate(buttonX, buttonY, -1)
+        translate(this.buttonX, this.buttonY, -1)
         fill(255, 102, 94);
         box(300, 100, 0)
         fill(color("black"))
-        text(buttonText, 0, 0)
+        text(this.buttonText, 0, 0)
         pop()
     }
+
+    // add collision detection
 }
