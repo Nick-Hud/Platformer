@@ -1,22 +1,14 @@
 class player extends entity {
-    draw(){
+    draw() {
         translate(this.getPos("vector"))
-        box(20)
+        box(15)
     }
 
-    jump(){
-
-    }
-
-    tick(){
+    jump() {
 
     }
 
-    xMovement(value){
-        this.xPos = this.xPos + value
-    }
+    tick() {
 
-    yMovement(value){
-        this.yPos = this.yPos + value
     }
 }

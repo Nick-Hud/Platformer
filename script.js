@@ -26,61 +26,52 @@ function inputs() {
     if (gameState == "mainMenu") {
 
     } if (gameState == "gameMode1") {
-        requestPointerLock()
         player1.setPos((player1.getPos("x") + movedX), player1.getPos("y"), (player1.getPos("z") + movedY))
+
+    } if (gameState == "pauseMenu") {
+
+    }
+
+}
+
+function process() {
+    if (gameState == "mainMenu") {
+
+    } if (gameState == "gameMode1") {
+        requestPointerLock()
+
 
     } if (gameState == "pauseMenu") {
         exitPointerLock()
     }
-    
-}
-
-function process() {
-
 }
 
 function output() {
     background(60)
     scene()
     player1.draw()
+    
 
 }
 
 function scene() {
-    //back panel
-    push()
-    fill(255, 102, 94);
-    translate(0, 0, -60)
-    plane(120, 120);
-    pop()
-    //left panel
-    push()
-    fill(255, 102, 94);
-    translate(-60, 0, 0)
-    rotateY(90)
-    plane(120, 120);
-    pop()
-    //right panel
-    push()
-    fill(255, 102, 94);
-    translate(60, 0, 0)
-    rotateY(90)
-    plane(120, 120);
-    pop()
-    //bottom panel
-    push()
-    fill(255, 102, 94);
-    translate(0, 60, 0)
-    rotateX(90)
-    plane(120, 120);
-    pop()
+    for (let i = 0; i <= 3; i++) {
+        push()
+        fill(255, 102, 94);
+        if (i == 0) { translate(0, 0, -60) }
+        if (i == 1) { translate(-60, 0, 0), rotateY(90) }
+        if (i == 2) { translate(60, 0, 0), rotateY(90) }
+        if (i == 3) { translate(0, 60, 0), rotateX(90) }
+        plane(120, 120);
+        pop()
+    }
 }
 
 function keyPressed() {
     if (keyCode == '80') {
         gameState = "pauseMenu"
     }
-    console.log(event)
+    //console.log(event)
 }
 
 function mouseClicked() {
