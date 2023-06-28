@@ -2,6 +2,11 @@ let gameState;
 let canvusWidth
 let canvusHeight
 let player1
+
+function preload() {
+    futuraHand = loadFont('FuturaHand.ttf');
+}
+
 function setup() {
     canvusWidth = windowWidth - 20
     canvusHeight = windowHeight - 100
@@ -9,8 +14,9 @@ function setup() {
     createCanvas(canvusWidth, canvusHeight, WEBGL);
     rectMode(CENTER)
     angleMode(DEGREES)
+    textFont(futuraHand);
+    textAlign(CENTER, CENTER)
     gameState = "mainMenu"
-    camera(0, -50, 150, 0, 12, 0);
     player1 = new player()
     player1.setPos(0, 40, 0)
 }
@@ -48,9 +54,18 @@ function process() {
 
 function output() {
     background(60)
-    scene()
-    player1.draw()
-    
+    if (gameState == "mainMenu") { mainMenu() }
+    if (gameState == "gameMode1") {
+        camera(0, -50, 150, 0, 12, 0);
+        scene()
+        player1.draw()
+
+
+    } if (gameState == "pauseMenu") {
+
+    }
+
+
 
 }
 
