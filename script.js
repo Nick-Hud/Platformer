@@ -7,11 +7,6 @@ This forms the basis of my project but requires other files to function
 let gameState;
 let canvusWidth
 let canvusHeight
-let player1
-let gameMode1Button
-let gameMode2Button
-let tutorialButton
-let prevGameState
 
 function preload() {
     //loads any needed assets
@@ -40,8 +35,7 @@ function setup() {
     tutorialButton = new button(400, 200, "Tutorial")
     resumeButton = new button(-300, 200, "Resume")
     mainMenuButton = new button(300, 200, "Main menu")
-    testTile = new tile()
-    testTile.setPos(30, 0, 0)
+    tileHandler1 = new tileHandler()
 }
 
 function draw() {
@@ -55,7 +49,11 @@ function draw() {
 function inputs() {
     //Player movement
     if (gameState == "gameMode1") {
-        player1.setPos((player1.getPos("x") + movedX), player1.getPos("y"), (player1.getPos("z") + movedY))
+        if (!(movedX >= 100 || movedX <= -100)) {
+            if (!(movedY >= 100 || movedY <= -100)) {
+                player1.setPos((player1.getPos("x") + movedX), player1.getPos("y"), (player1.getPos("z") + movedY))
+            }
+        }
     }
 }
 
@@ -82,8 +80,8 @@ function output() {
         setCamera(gameModeCamera)
         scene()
         player1.draw()
-        testTile.draw()
-    } 
+        tileHandler1.draw()
+    }
 }
 
 function scene() {

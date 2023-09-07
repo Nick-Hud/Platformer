@@ -29,18 +29,33 @@ class entity {
     }
 
     setPos(newX, newY, newZ) {
-        if (newX > 49 || newX < -49) {
+        if (newX > 50 || newX < -50) {
             console.warn("Invalid value of X: " + newX)
+            if (newX > 0) {
+                this.xPos = 50
+            } else {
+                this.xPos = -50
+            }
         } else {
             this.xPos = newX
         }
-        if (newY > 49 || newY < -49) {
+        if (newY > 50 || newY < -50) {
             console.warn("Invalid value of Y: " + newY)
+            if (newY > 0) {
+                this.yPos = 50
+            } else {
+                this.yPos = -50
+            }
         } else {
             this.yPos = newY
         }
-        if (newZ > 49 || newZ < -49) {
+        if (newZ > 50 || newZ < -50) {
             console.warn("Invalid value of Z: " + newZ)
+            if (newZ > 0) {
+                this.zPos = 50
+            } else {
+                this.zPos = -50
+            }
         } else {
             this.zPos = newZ
         }
