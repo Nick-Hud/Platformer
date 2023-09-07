@@ -11,6 +11,7 @@ let player1
 let gameMode1Button
 let gameMode2Button
 let tutorialButton
+let prevGameState
 
 function preload() {
     //loads any needed assets
@@ -23,6 +24,10 @@ function setup() {
     canvusHeight = windowHeight - 100
     frameRate(60);
     createCanvas(canvusWidth, canvusHeight, WEBGL);
+    menuCamera = createCamera()
+    gameModeCamera = createCamera()
+    gameModeCamera.camera(0, -50, 150, 0, 12, 0)
+    setCamera(menuCamera)
     rectMode(CENTER)
     angleMode(DEGREES)
     textFont(futuraHand);
@@ -33,6 +38,10 @@ function setup() {
     gameMode1Button = new button(-400, 200, "Game mode 1")
     gameMode2Button = new button(0, 200, "Game mode 2")
     tutorialButton = new button(400, 200, "Tutorial")
+    resumeButton = new button(-300, 200, "Resume")
+    mainMenuButton = new button(300, 200, "Main menu")
+    testTile = new tile()
+    testTile.setPos(30, 0, 0)
 }
 
 function draw() {
@@ -54,7 +63,7 @@ function process() {
     // validation for gamestate and pointerlock.
     if (gameState == "gameMode1") {
         requestPointerLock()
-    } if (gameState == "pauseMenu") {
+    } if (gameState == "pauseMenu" || gameState == "mainMenu") {
         exitPointerLock()
     }
     if (!(gameState == "gameMode1" || gameState == "mainMenu" || gameState == "pauseMenu" || gameState == "gameMode2" || gameState == "tutorial")) {
@@ -67,13 +76,14 @@ function output() {
     //Displays all the entities in the correct order
     background(60)
     if (gameState == "mainMenu") { mainMenuOutput() }
+    if (gameState == "pauseMenu") { pauseMenuOutput() }
     if (gameState == "gameMode1") {
-        camera(0, -50, 150, 0, 12, 0);
+        //camera(0, -50, 150, 0, 12, 0);
+        setCamera(gameModeCamera)
         scene()
         player1.draw()
-    } if (gameState == "pauseMenu") {
-        //Iteration 2
-    }
+        testTile.draw()
+    } 
 }
 
 function scene() {
@@ -93,6 +103,7 @@ function scene() {
 function keyPressed() {
     //Gets run whenever a key is pressed. Looks for the 'p' key and will change gameState to pauseMenu
     if (keyCode == '80') {
+        prevGameState = gameState
         gameState = "pauseMenu"
     }
     //console.log(event)
@@ -104,5 +115,9 @@ function mouseClicked() {
         gameMode1Button.onClick("gameMode1")
         gameMode2Button.onClick("gameMode2")
         tutorialButton.onClick("tutorial")
+    }
+    if (gameState == "pauseMenu") {
+        resumeButton.onClick(prevGameState)
+        mainMenuButton.onClick("mainMenu")
     }
 }

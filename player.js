@@ -8,8 +8,10 @@ This forms part of my project but requires other files to function
 class player extends entity {
     // A class for the player (More will be completed in iteration 2)
     draw() {
+        push()
         translate(this.getPos("vector"))
         box(15)
+        pop()
     }
 
     jump() {

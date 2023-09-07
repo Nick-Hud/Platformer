@@ -7,6 +7,7 @@ This forms part of my project but requires other files to function
 
 function mainMenuOutput() {
     //Outputs the menu and buttons
+    setCamera(menuCamera)
     push()
     textSize(100)
     text("PLATFORMER", 0, -300)
@@ -15,6 +16,17 @@ function mainMenuOutput() {
     gameMode1Button.draw()
     gameMode2Button.draw()
     tutorialButton.draw()
+}
+
+function pauseMenuOutput() {
+    setCamera(menuCamera)
+    push()
+    textSize(100)
+    fill(255);
+    text("PAUSE", 0, -300)
+    pop()
+    resumeButton.draw()
+    mainMenuButton.draw()
 }
 
 
