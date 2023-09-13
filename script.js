@@ -21,7 +21,6 @@ function setup() {
     createCanvas(canvusWidth, canvusHeight, WEBGL);
     menuCamera = createCamera()
     gameModeCamera = createCamera()
-    gameModeCamera.camera(0, -50, 150, 0, 12, 0)
     setCamera(menuCamera)
     rectMode(CENTER)
     angleMode(DEGREES)
@@ -29,13 +28,13 @@ function setup() {
     textAlign(CENTER, CENTER)
     gameState = "mainMenu"
     player1 = new player()
-    player1.setPos(0, 40, 0)
     gameMode1Button = new button(-400, 200, "Game mode 1")
     gameMode2Button = new button(0, 200, "Game mode 2")
     tutorialButton = new button(400, 200, "Tutorial")
     resumeButton = new button(-300, 200, "Resume")
     mainMenuButton = new button(300, 200, "Main menu")
     tileHandler1 = new tileHandler()
+    reset()
 }
 
 function draw() {
@@ -61,8 +60,13 @@ function process() {
     // validation for gamestate and pointerlock.
     if (gameState == "gameMode1") {
         requestPointerLock()
-    } if (gameState == "pauseMenu" || gameState == "mainMenu") {
+
+    } 
+    if (gameState == "pauseMenu" || gameState == "mainMenu") {
         exitPointerLock()
+    }
+    if (gameState == "mainMenu") {
+        reset()
     }
     if (!(gameState == "gameMode1" || gameState == "mainMenu" || gameState == "pauseMenu" || gameState == "gameMode2" || gameState == "tutorial")) {
         console.error("Unrecognised gameState: " + gameState + " Reverting to mainMenu")
@@ -89,11 +93,13 @@ function scene() {
     for (let i = 0; i <= 3; i++) {
         push()
         fill(255, 102, 94);
+        strokeWeight(2)
+        stroke(0)
         if (i == 0) { translate(0, 0, -60) }
         if (i == 1) { translate(-60, 0, 0), rotateY(90) }
         if (i == 2) { translate(60, 0, 0), rotateY(90) }
         if (i == 3) { translate(0, 60, 0), rotateX(90) }
-        plane(120, 120);
+        box(118, 118, 1)
         pop()
     }
 }
@@ -103,6 +109,9 @@ function keyPressed() {
     if (keyCode == '80') {
         prevGameState = gameState
         gameState = "pauseMenu"
+    }
+    if (keyCode == '32'){
+        player1.jump()
     }
     //console.log(event)
 }
