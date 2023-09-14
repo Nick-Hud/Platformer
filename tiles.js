@@ -35,7 +35,7 @@ class tileHandler {
             for (let j = 0; j < 3; j++) {
                 this.tiles[count].setPos(posArr[i], height, posArr[j])
                 count++
-                height -= 10
+                height -= 15
             }
         }
     }
@@ -83,7 +83,7 @@ class tileHandler {
             if (this.tiles[i].getPos("y") >= 49){
                 this.tiles[i].setShown(false)
                 this.randomise(1)
-                this.tiles[i].setPos(this.tiles[i].getPos("x"), -40, this.tiles[i].getPos("z"))
+                this.tiles[i].setPos(this.tiles[i].getPos("x"), -45, this.tiles[i].getPos("z"))
             }
         }
     }

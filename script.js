@@ -7,6 +7,7 @@ This forms the basis of my project but requires other files to function
 let gameState;
 let canvusWidth
 let canvusHeight
+let score = 0
 
 function preload() {
     //loads any needed assets
@@ -62,8 +63,10 @@ function process() {
         requestPointerLock()
         if (player1.getPos("y") < 0) {
             tileHandler1.dropTiles(0.5)
+            score += 10
         } else {
             tileHandler1.dropTiles(0.05)
+            score += 1
         }
         tileHandler1.tileResetDetection()
     } 
@@ -90,6 +93,10 @@ function output() {
         scene()
         player1.draw()
         tileHandler1.draw()
+        push()
+        fill(color("black"))
+        text(score, 0, -50)
+        pop()
     }
 }
 

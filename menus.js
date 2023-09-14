@@ -20,7 +20,7 @@ function mainMenuOutput() {
 
 function resetValues() {
     tileHandler1.hideAll()
-    tileHandler1.randomise(4)
+    tileHandler1.randomise(3)
     tileHandler1.getTile(4).setShown(true)
     tileHandler1.getTile(4).setPos(0, 40, 0)
     player1.setPos(0, 30, 0)
