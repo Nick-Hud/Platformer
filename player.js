@@ -16,8 +16,8 @@ class player extends entity {
 
     jump() {
         this.setPos(this.xPos, this.yPos - 20, this.zPos)
-        this.maxHeight = this.yPos -30
-        
+        this.maxHeight = this.yPos - 30
+
     }
 
     tick() {

@@ -34,7 +34,7 @@ function setup() {
     resumeButton = new button(-300, 200, "Resume")
     mainMenuButton = new button(300, 200, "Main menu")
     tileHandler1 = new tileHandler()
-    reset()
+    resetValues()
 }
 
 function draw() {
@@ -60,13 +60,18 @@ function process() {
     // validation for gamestate and pointerlock.
     if (gameState == "gameMode1") {
         requestPointerLock()
-
+        if (player1.getPos("y") < 0) {
+            tileHandler1.dropTiles(0.5)
+        } else {
+            tileHandler1.dropTiles(0.05)
+        }
+        tileHandler1.tileResetDetection()
     } 
     if (gameState == "pauseMenu" || gameState == "mainMenu") {
         exitPointerLock()
     }
     if (gameState == "mainMenu") {
-        reset()
+        resetValues()
     }
     if (!(gameState == "gameMode1" || gameState == "mainMenu" || gameState == "pauseMenu" || gameState == "gameMode2" || gameState == "tutorial")) {
         console.error("Unrecognised gameState: " + gameState + " Reverting to mainMenu")

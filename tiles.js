@@ -5,7 +5,7 @@ class tile extends entity {
         this.shown = false
     }
     draw() {
-        if(this.shown){
+        if (this.shown) {
             push()
             translate(this.getPos("vector"))
             box(25, 3, 25)
@@ -58,11 +58,33 @@ class tileHandler {
         for (let i = 0; i < numberToShow; i++) {
             do {
                 number = Math.round(Math.random() * 8)
-            } while(randomNos.includes(number))
+            } while (randomNos.includes(number))
             randomNos[i] = number
         }
         for (let i = 0; i < numberToShow; i++) {
             this.tiles[randomNos[i]].setShown(true)
+        }
+    }
+
+    hideAll() {
+        for (let i = 0; i < 9; i++) {
+            this.tiles[i].setShown(false)
+        }
+    }
+
+    dropTiles(rate) {
+        for (let i = 0; i < 9; i++) {
+            this.tiles[i].setPos(this.tiles[i].getPos("x"), this.tiles[i].getPos("y") + rate, this.tiles[i].getPos("z"))
+        }
+    }
+
+    tileResetDetection(){
+        for (let i = 0; i < 9; i++) {
+            if (this.tiles[i].getPos("y") >= 49){
+                this.tiles[i].setShown(false)
+                this.randomise(1)
+                this.tiles[i].setPos(this.tiles[i].getPos("x"), -40, this.tiles[i].getPos("z"))
+            }
         }
     }
 }

@@ -18,7 +18,8 @@ function mainMenuOutput() {
     tutorialButton.draw()
 }
 
-function reset(){
+function resetValues() {
+    tileHandler1.hideAll()
     tileHandler1.randomise(4)
     tileHandler1.getTile(4).setShown(true)
     tileHandler1.getTile(4).setPos(0, 40, 0)
