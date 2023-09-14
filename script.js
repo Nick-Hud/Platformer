@@ -97,6 +97,7 @@ function output() {
         fill(color("black"))
         text(score, 0, -50)
         pop()
+        console.log(tileHandler1.getAllShown())
     }
 }
 
