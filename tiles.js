@@ -97,13 +97,14 @@ class tileHandler {
                 pointer += 1
             }
         }
-        //return(currentlyShown)
         for (let i = 0; i < currentlyShown.length; i++) {
             let currentlyShownX = this.tiles[i].getPos("x")
             let currentlyShownY = this.tiles[i].getPos("y")
             let currentlyShownZ = this.tiles[i].getPos("z")
             let upperBounds = [currentlyShownX + 12.5, currentlyShownY + 1.5, currentlyShownZ + 12.5]
             let lowerBounds = [currentlyShownX - 12.5, currentlyShownY - 1.5, currentlyShownZ - 12.5]
+            currentlyShown[i] = [currentlyShown[i], upperBounds, lowerBounds]
         }
+        return(currentlyShown)
     }
 }

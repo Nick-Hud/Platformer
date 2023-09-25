@@ -24,3 +24,13 @@ class player extends entity {
 
     }
 }
+
+function collisionDetection(){
+    shownTilesWithBounds = tileHandler1.getAllShown()
+    console.log(shownTilesWithBounds)
+    playerUpperBounds = [player1.getPos("x") + 7.5, player1.getPos("y") + 7.5, player1.getPos("z") + 7.5]
+    playerLowerBounds = [player1.getPos("x") - 7.5, player1.getPos("y") - 7.5, player1.getPos("z") - 7.5]
+    console.log(playerUpperBounds, playerLowerBounds)
+
+
+}

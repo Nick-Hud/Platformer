@@ -69,6 +69,7 @@ function process() {
             score += 1
         }
         tileHandler1.tileResetDetection()
+        collisionDetection()
     } 
     if (gameState == "pauseMenu" || gameState == "mainMenu") {
         exitPointerLock()
@@ -97,7 +98,6 @@ function output() {
         fill(color("black"))
         text(score, 0, -50)
         pop()
-        console.log(tileHandler1.getAllShown())
     }
 }
 

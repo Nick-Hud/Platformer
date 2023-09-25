@@ -25,6 +25,7 @@ function resetValues() {
     tileHandler1.getTile(4).setPos(0, 40, 0)
     player1.setPos(0, 30, 0)
     gameModeCamera.camera(0, -50, 150, 0, 12, 0)
+    score = 0
 }
 
 function pauseMenuOutput() {
