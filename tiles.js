@@ -78,9 +78,9 @@ class tileHandler {
         }
     }
 
-    tileResetDetection(){
+    tileResetDetection() {
         for (let i = 0; i < 9; i++) {
-            if (this.tiles[i].getPos("y") >= 49){
+            if (this.tiles[i].getPos("y") >= 49) {
                 this.tiles[i].setShown(false)
                 this.randomise(1)
                 this.tiles[i].setPos(this.tiles[i].getPos("x"), -45, this.tiles[i].getPos("z"))
@@ -88,22 +88,19 @@ class tileHandler {
         }
     }
 
-    getAllShown(){
+    getAllShown() {
         let currentlyShown = []
         let pointer = 0
         for (let i = 0; i < 9; i++) {
-            if (this.tiles[i].getShown() == true){
-                currentlyShown[pointer] = i
+            if (this.tiles[i].getShown() == true) {
+                let currentlyShownX = this.tiles[i].getPos("x")
+                let currentlyShownY = this.tiles[i].getPos("y")
+                let currentlyShownZ = this.tiles[i].getPos("z")
+                let bounds = { "upperX": currentlyShownX + 12.5, "upperY": currentlyShownY + 1.5, "upperZ": currentlyShownZ + 12.5, "lowerX": currentlyShownX - 12.5, "lowerY": currentlyShownY - 1.5, "lowerZ": currentlyShownZ - 12.5 }
+                currentlyShown[pointer] = { "tileNumber": i, "bounds": bounds }
                 pointer += 1
             }
         }
-        for (let i = 0; i < currentlyShown.length; i++) {
-            let currentlyShownX = this.tiles[i].getPos("x")
-            let currentlyShownY = this.tiles[i].getPos("y")
-            let currentlyShownZ = this.tiles[i].getPos("z")
-            let bounds = {"upperX" : currentlyShownX + 12.5, "upperY" : currentlyShownY + 1.5, "upperZ" : currentlyShownZ + 12.5, "lowerX" : currentlyShownX - 12.5, "lowerY" : currentlyShownY - 1.5, "lowerZ" : currentlyShownZ - 12.5}
-            currentlyShown[i] = {"tileNumber" : currentlyShown[i], "bounds" : bounds}
-        }
-        return(currentlyShown)
+        return (currentlyShown)
     }
 }

@@ -25,31 +25,23 @@ class player extends entity {
     }
 }
 
-function collisionDetection() {
+function playerFall(rate) {
     shownTilesWithBounds = tileHandler1.getAllShown()
     playerUpperBounds = [player1.getPos("x") + 7.5, player1.getPos("y") + 7.5, player1.getPos("z") + 7.5]
     playerLowerBounds = [player1.getPos("x") - 7.5, player1.getPos("y") - 7.5, player1.getPos("z") - 7.5]
     for (let i = 0; i < shownTilesWithBounds.length; i++) {
-        if ((shownTilesWithBounds[i].bounds.lowerX <= playerUpperBounds[0]) && (shownTilesWithBounds[i].bounds.upperX >= playerLowerBounds[0])) {
-            if ((shownTilesWithBounds[i].bounds.lowerZ <= playerUpperBounds[2]) && (shownTilesWithBounds[i].bounds.upperZ >= playerLowerBounds[2])) {
-                console.log("Overlapping" + shownTilesWithBounds[i].tileNumber)
+        if (((shownTilesWithBounds[i].bounds.lowerX < playerUpperBounds[0]) && (shownTilesWithBounds[i].bounds.upperX > playerLowerBounds[0])) && ((shownTilesWithBounds[i].bounds.lowerZ < playerUpperBounds[2]) && (shownTilesWithBounds[i].bounds.upperZ > playerLowerBounds[2]))) {
+            console.log("Overlapping" + shownTilesWithBounds[i].tileNumber)
+            if (playerUpperBounds[1]>= shownTilesWithBounds[i].boundsLowerY){
+                player1.setPos(player1.getPos("x"), shownTilesWithBounds[i].bounds.upperY, player1.getPos("z"))
             }
-        } 
+            break
+        } else {
+            player1.setPos(player1.getPos("x"), player1.getPos("y") + rate, player1.getPos("z"))
+        }
     }
-
 }
 
-
-/* 
-
-
-
-
-
-if (((shownTilesWithBounds[i].bounds.lowerY) <= playerUpperBounds[1]) && shownTilesWithBounds[i].bounds.upperY >= playerLowerBounds[1]) {
+function gameOverDetection(){
     
 }
-
-
-
-*/

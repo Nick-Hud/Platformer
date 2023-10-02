@@ -69,7 +69,8 @@ function process() {
             score += 1
         }
         tileHandler1.tileResetDetection()
-        collisionDetection()
+        playerFall(0.1)
+        gameOverDetection()
     } 
     if (gameState == "pauseMenu" || gameState == "mainMenu") {
         exitPointerLock()
