@@ -1,5 +1,5 @@
 /* Name: Nicholas Hudson
-Date:29/06/2023
+Date:02/10/2023
 This is the file that contains the entity class for my program.
 This is used for every object displayed (except buttons)
 This forms part of my project but requires other files to function

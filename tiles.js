@@ -1,3 +1,10 @@
+/* Name: Nicholas Hudson
+Date:02/10/2023
+This is the file that contains the tile and tile handler class for my program.
+This is used for the tiles peice
+This forms part of my project but requires other files to function
+(script.js, index.html, entity.js) */
+
 class tile extends entity {
     constructor() {
         super()

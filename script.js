@@ -1,5 +1,5 @@
 /* Name: Nicholas Hudson
-Date:29/06/2023
+Date:02/10/2023
 This is the main script.js file for my program it contains all of the predefined functions. 
 This forms the basis of my project but requires other files to function
 (menu.js, entity.js, player.js, index.html) */
@@ -69,16 +69,19 @@ function process() {
             score += 1
         }
         tileHandler1.tileResetDetection()
-        playerFall(0.1)
+        playerFall(0.5)
         gameOverDetection()
-    } 
+    }
+    if (gameState == "gameOver") {
+        exitPointerLock()
+    }
     if (gameState == "pauseMenu" || gameState == "mainMenu") {
         exitPointerLock()
     }
     if (gameState == "mainMenu") {
         resetValues()
     }
-    if (!(gameState == "gameMode1" || gameState == "mainMenu" || gameState == "pauseMenu" || gameState == "gameMode2" || gameState == "tutorial")) {
+    if (!(gameState == "gameMode1" || gameState == "mainMenu" || gameState == "pauseMenu" || gameState == "gameMode2" || gameState == "tutorial" || gameState == "gameOver")) {
         console.error("Unrecognised gameState: " + gameState + " Reverting to mainMenu")
         gameState = "mainMenu"
     }
@@ -99,6 +102,15 @@ function output() {
         fill(color("black"))
         text(score, 0, -50)
         pop()
+    }
+    if (gameState == "gameOver") {
+        setCamera(menuCamera)
+        push()
+        textSize(100)
+        fill(255);
+        text("GAME OVER", 0, -300)
+        pop()
+        mainMenuButton.draw()
     }
 }
 
@@ -124,7 +136,7 @@ function keyPressed() {
         prevGameState = gameState
         gameState = "pauseMenu"
     }
-    if (keyCode == '32'){
+    if (keyCode == '32') {
         player1.jump()
     }
     //console.log(event)
@@ -139,6 +151,9 @@ function mouseClicked() {
     }
     if (gameState == "pauseMenu") {
         resumeButton.onClick(prevGameState)
+        mainMenuButton.onClick("mainMenu")
+    }
+    if (gameState == "gameOver"){
         mainMenuButton.onClick("mainMenu")
     }
 }
