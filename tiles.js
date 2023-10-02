@@ -101,9 +101,8 @@ class tileHandler {
             let currentlyShownX = this.tiles[i].getPos("x")
             let currentlyShownY = this.tiles[i].getPos("y")
             let currentlyShownZ = this.tiles[i].getPos("z")
-            let upperBounds = [currentlyShownX + 12.5, currentlyShownY + 1.5, currentlyShownZ + 12.5]
-            let lowerBounds = [currentlyShownX - 12.5, currentlyShownY - 1.5, currentlyShownZ - 12.5]
-            currentlyShown[i] = [currentlyShown[i], upperBounds, lowerBounds]
+            let bounds = {"upperX" : currentlyShownX + 12.5, "upperY" : currentlyShownY + 1.5, "upperZ" : currentlyShownZ + 12.5, "lowerX" : currentlyShownX - 12.5, "lowerY" : currentlyShownY - 1.5, "lowerZ" : currentlyShownZ - 12.5}
+            currentlyShown[i] = {"tileNumber" : currentlyShown[i], "bounds" : bounds}
         }
         return(currentlyShown)
     }

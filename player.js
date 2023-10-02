@@ -25,12 +25,31 @@ class player extends entity {
     }
 }
 
-function collisionDetection(){
+function collisionDetection() {
     shownTilesWithBounds = tileHandler1.getAllShown()
-    console.log(shownTilesWithBounds)
     playerUpperBounds = [player1.getPos("x") + 7.5, player1.getPos("y") + 7.5, player1.getPos("z") + 7.5]
     playerLowerBounds = [player1.getPos("x") - 7.5, player1.getPos("y") - 7.5, player1.getPos("z") - 7.5]
-    console.log(playerUpperBounds, playerLowerBounds)
-
+    for (let i = 0; i < shownTilesWithBounds.length; i++) {
+        if ((shownTilesWithBounds[i].bounds.lowerX <= playerUpperBounds[0]) && (shownTilesWithBounds[i].bounds.upperX >= playerLowerBounds[0])) {
+            if ((shownTilesWithBounds[i].bounds.lowerZ <= playerUpperBounds[2]) && (shownTilesWithBounds[i].bounds.upperZ >= playerLowerBounds[2])) {
+                console.log("Overlapping" + shownTilesWithBounds[i].tileNumber)
+            }
+        } 
+    }
 
 }
+
+
+/* 
+
+
+
+
+
+if (((shownTilesWithBounds[i].bounds.lowerY) <= playerUpperBounds[1]) && shownTilesWithBounds[i].bounds.upperY >= playerLowerBounds[1]) {
+    
+}
+
+
+
+*/
