@@ -48,7 +48,7 @@ function draw() {
 
 function inputs() {
     //Player movement
-    if (gameState == "gameMode1") {
+    if (gameState == "gameMode1"|| gameState == "gameMode2") {
         if (!(movedX >= 100 || movedX <= -100)) {
             if (!(movedY >= 100 || movedY <= -100)) {
                 player1.setPos((player1.getPos("x") + movedX), player1.getPos("y"), (player1.getPos("z") + movedY))
@@ -59,7 +59,7 @@ function inputs() {
 
 function process() {
     // validation for gamestate and pointerlock.
-    if (gameState == "gameMode1") {
+    if (gameState == "gameMode1" || gameState == "gameMode2") {
         requestPointerLock()
         if (player1.getPos("y") < 0) {
             tileHandler1.dropTiles(0.5)
@@ -93,7 +93,12 @@ function output() {
     if (gameState == "mainMenu") { mainMenuOutput() }
     if (gameState == "pauseMenu") { pauseMenuOutput() }
     if (gameState == "gameMode1") {
-        //camera(0, -50, 150, 0, 12, 0);
+        gameModeCamera.camera(0, -50, 150, 0, 12, 0)
+    }
+    if (gameState == "gameMode2") {
+        gameModeCamera.camera(player1.getPos("x"), -50 + player1.getPos("y"), 125 + player1.getPos("z"), player1.getPos("x"), player1.getPos("y"), player1.getPos("z"))
+    }
+    if (gameState == "gameMode1"|| gameState == "gameMode2") {
         setCamera(gameModeCamera)
         scene()
         player1.draw()

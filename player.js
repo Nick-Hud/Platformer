@@ -19,10 +19,6 @@ class player extends entity {
         this.maxHeight = this.yPos - 35
 
     }
-
-    tick() {
-
-    }
 }
 
 function playerFall(rate) {
