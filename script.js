@@ -8,6 +8,7 @@ let gameState;
 let canvusWidth
 let canvusHeight
 let score = 0
+let leaderboardGot = false
 
 function preload() {
     //loads any needed assets
@@ -81,7 +82,7 @@ function process() {
     if (gameState == "mainMenu") {
         resetValues()
     }
-    if (!(gameState == "gameMode1" || gameState == "mainMenu" || gameState == "pauseMenu" || gameState == "gameMode2" || gameState == "tutorial" || gameState == "gameOver")) {
+    if (!(gameState == "gameMode1" || gameState == "mainMenu" || gameState == "pauseMenu" || gameState == "gameMode2" || gameState == "tutorial" || gameState == "gameOver" || gameState == "leaderboard")) {
         console.error("Unrecognised gameState: " + gameState + " Reverting to mainMenu")
         gameState = "mainMenu"
     }
@@ -116,6 +117,9 @@ function output() {
         text("GAME OVER", 0, -300)
         pop()
         mainMenuButton.draw()
+    }
+    if (gameState == "leaderboard") {
+        leaderboardDisplay()
     }
 }
 
