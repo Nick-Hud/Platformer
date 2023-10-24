@@ -9,7 +9,8 @@ let canvusWidth
 let canvusHeight
 let score = 0
 let displayName
-let leaderboardGot = false
+let leaderboardGot, leaderboardRecived = false
+let leaderboardData = {}
 
 function preload() {
     //loads any needed assets
@@ -43,6 +44,9 @@ function setup() {
     leaderboardButton = new button(0, 75, "Submit to Leaderboard")
     tileHandler1 = new tileHandler()
     resetValues()
+    if (canvusWidth < 1175 || canvusHeight < 850){
+        gameState = "screenWarning"
+    }
 }
 
 function draw() {
@@ -88,7 +92,7 @@ function process() {
     if (gameState == "mainMenu") {
         resetValues()
     }
-    if (!(gameState == "gameMode1" || gameState == "mainMenu" || gameState == "pauseMenu" || gameState == "gameMode2" || gameState == "tutorial" || gameState == "gameOver" || gameState == "leaderboard")) {
+    if (!(gameState == "gameMode1" || gameState == "mainMenu" || gameState == "pauseMenu" || gameState == "gameMode2" || gameState == "tutorial" || gameState == "gameOver" || gameState == "leaderboard" || gameState == "screenWarning")) {
         console.error("Unrecognised gameState: " + gameState + " Reverting to mainMenu")
         gameState = "mainMenu"
     }
@@ -128,6 +132,14 @@ function output() {
     }
     if (gameState == "leaderboard") {
         leaderboardDisplay()
+    }
+    if (gameState == "screenWarning"){
+        push()
+        textSize(50)
+        text("Your screen may be too small", 0, 0)
+        text("Continue at your own risk", 0, 75)
+        pop()
+        mainMenuButton.draw()
     }
 }
 
@@ -173,5 +185,8 @@ function mouseClicked() {
     if (gameState == "gameOver") {
         mainMenuButton.onClick("mainMenu")
         leaderboardButton.onClick("leaderboard")
+    }
+    if (gameState == "leaderboard" || gameState == "screenWarning"){
+        mainMenuButton.onClick("mainMenu")
     }
 }
