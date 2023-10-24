@@ -15,13 +15,13 @@ connection.connect((err) => {
 
 
 function addToDatabase(displayName, score) {
-    console.log(displayName, score)
+    //console.log(displayName, score)
     connection.query('INSERT INTO leaderboard (displayName, score) VALUES (?, ?)', [displayName, score], (err, results) => {
         if (err) {
             console.log(err)
         }
         if (results) {
-            console.log(results)
+            //console.log(results)
         }
     });
 }

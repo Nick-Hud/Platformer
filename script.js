@@ -8,6 +8,7 @@ let gameState;
 let canvusWidth
 let canvusHeight
 let score = 0
+let displayName
 let leaderboardGot = false
 
 function preload() {
@@ -30,11 +31,16 @@ function setup() {
     textAlign(CENTER, CENTER)
     gameState = "mainMenu"
     player1 = new player()
+    inp = createInput('Display Name');
+    inp.position((canvusWidth / 2) - 50, (canvusHeight / 2));
+    inp.size(100);
+    inp.input(myInputEvent);
     gameMode1Button = new button(-400, 200, "Game mode 1")
     gameMode2Button = new button(0, 200, "Game mode 2")
     tutorialButton = new button(400, 200, "Tutorial")
     resumeButton = new button(-300, 200, "Resume")
     mainMenuButton = new button(300, 200, "Main menu")
+    leaderboardButton = new button(0, 75, "Submit to Leaderboard")
     tileHandler1 = new tileHandler()
     resetValues()
 }
@@ -49,7 +55,7 @@ function draw() {
 
 function inputs() {
     //Player movement
-    if (gameState == "gameMode1"|| gameState == "gameMode2") {
+    if (gameState == "gameMode1" || gameState == "gameMode2") {
         if (!(movedX >= 100 || movedX <= -100)) {
             if (!(movedY >= 100 || movedY <= -100)) {
                 player1.setPos((player1.getPos("x") + movedX), player1.getPos("y"), (player1.getPos("z") + movedY))
@@ -99,7 +105,7 @@ function output() {
     if (gameState == "gameMode2") {
         gameModeCamera.camera(player1.getPos("x"), -50 + player1.getPos("y"), 125 + player1.getPos("z"), player1.getPos("x"), player1.getPos("y"), player1.getPos("z"))
     }
-    if (gameState == "gameMode1"|| gameState == "gameMode2") {
+    if (gameState == "gameMode1" || gameState == "gameMode2") {
         setCamera(gameModeCamera)
         scene()
         player1.draw()
@@ -117,6 +123,8 @@ function output() {
         text("GAME OVER", 0, -300)
         pop()
         mainMenuButton.draw()
+        leaderboardButton.draw()
+        inp.show()
     }
     if (gameState == "leaderboard") {
         leaderboardDisplay()
@@ -162,7 +170,8 @@ function mouseClicked() {
         resumeButton.onClick(prevGameState)
         mainMenuButton.onClick("mainMenu")
     }
-    if (gameState == "gameOver"){
+    if (gameState == "gameOver") {
         mainMenuButton.onClick("mainMenu")
+        leaderboardButton.onClick("leaderboard")
     }
 }
