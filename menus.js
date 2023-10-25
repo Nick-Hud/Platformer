@@ -1,5 +1,5 @@
 /* Name: Nicholas Hudson
-Date:02/10/2023
+Date:25/10/2023
 This is the file that contains the menu functions and the button class.
 This handles the menus of my program.
 This forms part of my project but requires other files to function
@@ -19,6 +19,7 @@ function mainMenuOutput() {
 }
 
 function resetValues() {
+    //Resets all the required values to reset my program
     tileHandler1.hideAll()
     tileHandler1.randomise(3)
     tileHandler1.getTile(4).setShown(true)
@@ -30,6 +31,7 @@ function resetValues() {
 }
 
 function pauseMenuOutput() {
+    //Outputs the pause menu
     setCamera(menuCamera)
     push()
     textSize(100)

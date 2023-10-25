@@ -1,5 +1,5 @@
 /* Name: Nicholas Hudson
-Date:02/10/2023
+Date:25/10/2023
 This is the main script.js file for my program it contains all of the predefined functions. 
 This forms the basis of my project but requires other files to function
 (menu.js, entity.js, player.js, index.html) */
@@ -24,7 +24,7 @@ function preload() {
 }
 
 function setup() {
-    //Sets up essential features such as: canvus, frame rate and instantiating the player object
+    //Sets up essential features such as: canvus, frame rate and instantiating objects
     canvusWidth = windowWidth - 20
     canvusHeight = windowHeight - 100
     frameRate(60);
@@ -75,7 +75,7 @@ function inputs() {
 }
 
 function process() {
-    // validation for gamestate and pointerlock.
+    // Runs all the processing that needs to happen per frame
     if (gameState == "gameMode1" || gameState == "gameMode2" || gameState == "tutorial") {
         requestPointerLock()
         if (player1.getPos("y") < 0) {
@@ -172,7 +172,7 @@ function scene() {
 }
 
 function keyPressed() {
-    //Gets run whenever a key is pressed. Looks for the 'p' key and will change gameState to pauseMenu
+    //Gets run whenever a key is pressed. Will then complete the nesecarry functions
     if (keyCode == '80') {
         if (gameState == "gameMode1" || gameState == "gameMode2" || gameState == "tutorial") {
             prevGameState = gameState

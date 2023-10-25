@@ -1,12 +1,12 @@
 /* Name: Nicholas Hudson
-Date:02/10/2023
+Date:25/10/2023
 This is the file that contains the player class for my program.
 This is used for the player peice
 This forms part of my project but requires other files to function
 (script.js, index.html, entity.js) */
 
 class player extends entity {
-    // A class for the player (More will be completed in iteration 2)
+    // A class for the player
     draw() {
         push()
         translate(this.getPos("vector"))
@@ -23,6 +23,7 @@ class player extends entity {
     }
 }
 
+//A function to control the falling of the player peice depedning on its location above a tile
 function playerFall(rate) {
     shownTilesWithBounds = tileHandler1.getAllShown()
     playerUpperBounds = [player1.getPos("x") + 75, player1.getPos("y") + 75, player1.getPos("z") + 75]
@@ -41,6 +42,7 @@ function playerFall(rate) {
     }
 }
 
+//Detects whether the game needs to end or not
 function gameOverDetection(){
     if(player1.getPos("y") >= 450){
         if (score <= 250){

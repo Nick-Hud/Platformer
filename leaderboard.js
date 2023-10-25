@@ -1,3 +1,10 @@
+/* Name: Nicholas Hudson
+Date:25/10/2023
+This is the leaderboard.js file that containe the interfacing with the server and the leaderboard displaying.
+This ensures that the leaderboard is submitted, recived and displayed correctly.
+(script.js, index.html) */
+
+//This function connects and iterfaces with the Leaderboard server
 function leaderboardSubmitAndGet() {
     if (!leaderboardGot) {
         let URL = 'wss://wss.njhudson.co.uk:8082'
@@ -25,6 +32,7 @@ function leaderboardSubmitAndGet() {
     }
 }
 
+//This function displays the leaderboard to the user once the leaderboard has been recived
 function leaderboardDisplay() {
     if (leaderboardRecived == false) {
         push()
@@ -67,7 +75,7 @@ function leaderboardDisplay() {
 
 }
 
-
+//This function takes the input from the input form and puts the value into the displayName variable
 function myInputEvent() {
     displayName = this.value()
 }

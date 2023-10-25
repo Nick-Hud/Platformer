@@ -1,10 +1,11 @@
 /* Name: Nicholas Hudson
-Date:02/10/2023
+Date:25/10/2023
 This is the file that contains the tile and tile handler class for my program.
 This is used for the tiles peice
 This forms part of my project but requires other files to function
 (script.js, index.html, entity.js) */
 
+//Class used for all the individual tiles, storing their position, shown and draw functions
 class tile extends entity {
     constructor() {
         super()
@@ -29,6 +30,7 @@ class tile extends entity {
 
 }
 
+//The class to handle all 9 tiles randomising, reset and dropping of the tiles
 class tileHandler {
     constructor() {
         this.tiles = []
