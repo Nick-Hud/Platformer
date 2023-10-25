@@ -70,5 +70,4 @@ function leaderboardDisplay() {
 
 function myInputEvent() {
     displayName = this.value()
-    console.log(displayName)
 }
