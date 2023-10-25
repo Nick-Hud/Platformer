@@ -17,7 +17,9 @@ class player extends entity {
     jump() {
         this.setPos(this.xPos, this.yPos - 200, this.zPos)
         this.maxHeight = this.yPos - 350
-
+        jumpAllowed = false
+        nextJumpScore = score + 35
+        jumpSound.play()
     }
 }
 
@@ -30,7 +32,7 @@ function playerFall(rate) {
         if (((shownTilesWithBounds[i].bounds.lowerX < playerUpperBounds[0]) && (shownTilesWithBounds[i].bounds.upperX > playerLowerBounds[0])) && ((shownTilesWithBounds[i].bounds.lowerZ < playerUpperBounds[2]) && (shownTilesWithBounds[i].bounds.upperZ > playerLowerBounds[2]))) {
             if (playerUpperBounds[1] <= shownTilesWithBounds[i].bounds.lowerY){
                 fall = false
-                player1.setPos(player1.getPos("x"), player1.getPos("y") + 0.75, player1.getPos("z"))
+                player1.setPos(player1.getPos("x"), player1.getPos("y") + 2, player1.getPos("z"))
             }
         }
     }
@@ -42,9 +44,10 @@ function playerFall(rate) {
 function gameOverDetection(){
     if(player1.getPos("y") >= 450){
         if (score <= 250){
-            console.log("Grace period")
+            //Grace period
         } else {
             gameState = "gameOver"
+            gameOverSound.play()
         }
     }
 }

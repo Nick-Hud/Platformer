@@ -11,10 +11,16 @@ let score = 0
 let displayName
 let leaderboardGot, leaderboardRecived = false
 let leaderboardData = {}
+let jumpAllowed = true
+let nextJumpScore
+let jumpSound, gameOverSound
 
 function preload() {
     //loads any needed assets
     futuraHand = loadFont('FuturaHand.ttf');
+    soundFormats('wav');
+    jumpSound = loadSound('sound/Jump')
+    gameOverSound = loadSound('sound/Game over')
 }
 
 function setup() {
@@ -81,6 +87,9 @@ function process() {
         }
         tileHandler1.tileResetDetection()
         playerFall(2.5)
+        if (score >= nextJumpScore){
+            jumpAllowed = true
+        }
     }
     if (gameState == "gameMode1" || gameState == "gameMode2") {
         gameOverDetection()
@@ -171,7 +180,9 @@ function keyPressed() {
         }
     }
     if (keyCode == '32') {
-        player1.jump()
+        if (jumpAllowed) {
+            player1.jump()
+        }
     }
     //console.log(event)
 }
