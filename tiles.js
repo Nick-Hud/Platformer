@@ -15,7 +15,7 @@ class tile extends entity {
         if (this.shown) {
             push()
             translate(this.getPos("vector"))
-            box(25, 3, 25)
+            box(250, 30, 250)
             pop()
         }
     }
@@ -32,8 +32,8 @@ class tile extends entity {
 class tileHandler {
     constructor() {
         this.tiles = []
-        let posArr = [-40, 0, 40]
-        let height = 40
+        let posArr = [-400, 0, 400]
+        let height = 400
         for (let i = 0; i < 9; i++) {
             this.tiles[i] = new tile()
         }
@@ -42,7 +42,7 @@ class tileHandler {
             for (let j = 0; j < 3; j++) {
                 this.tiles[count].setPos(posArr[i], height, posArr[j])
                 count++
-                height -= 15
+                height -= 150
             }
         }
     }
@@ -87,10 +87,10 @@ class tileHandler {
 
     tileResetDetection() {
         for (let i = 0; i < 9; i++) {
-            if (this.tiles[i].getPos("y") >= 49) {
+            if (this.tiles[i].getPos("y") >= 490) {
                 this.tiles[i].setShown(false)
                 this.randomise(1)
-                this.tiles[i].setPos(this.tiles[i].getPos("x"), -45, this.tiles[i].getPos("z"))
+                this.tiles[i].setPos(this.tiles[i].getPos("x"), -450, this.tiles[i].getPos("z"))
             }
         }
     }
@@ -103,7 +103,7 @@ class tileHandler {
                 let currentlyShownX = this.tiles[i].getPos("x")
                 let currentlyShownY = this.tiles[i].getPos("y")
                 let currentlyShownZ = this.tiles[i].getPos("z")
-                let bounds = { "upperX": currentlyShownX + 12.5, "upperY": currentlyShownY + 1.5, "upperZ": currentlyShownZ + 12.5, "lowerX": currentlyShownX - 12.5, "lowerY": currentlyShownY - 1.5, "lowerZ": currentlyShownZ - 12.5 }
+                let bounds = { "upperX": currentlyShownX + 125, "upperY": currentlyShownY + 15, "upperZ": currentlyShownZ + 125, "lowerX": currentlyShownX - 125, "lowerY": currentlyShownY - 15, "lowerZ": currentlyShownZ - 125 }
                 currentlyShown[pointer] = { "tileNumber": i, "bounds": bounds }
                 pointer += 1
             }

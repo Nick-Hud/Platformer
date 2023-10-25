@@ -22,8 +22,8 @@ function resetValues() {
     tileHandler1.hideAll()
     tileHandler1.randomise(3)
     tileHandler1.getTile(4).setShown(true)
-    tileHandler1.getTile(4).setPos(0, 40, 0)
-    player1.setPos(0, 30, 0)
+    tileHandler1.getTile(4).setPos(0, 400, 0)
+    player1.setPos(0, 300, 0)
     score = 0
     inp.hide()
     leaderboardGot = false

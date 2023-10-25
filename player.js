@@ -10,27 +10,27 @@ class player extends entity {
     draw() {
         push()
         translate(this.getPos("vector"))
-        box(15)
+        box(150)
         pop()
     }
 
     jump() {
-        this.setPos(this.xPos, this.yPos - 20, this.zPos)
-        this.maxHeight = this.yPos - 35
+        this.setPos(this.xPos, this.yPos - 200, this.zPos)
+        this.maxHeight = this.yPos - 350
 
     }
 }
 
 function playerFall(rate) {
     shownTilesWithBounds = tileHandler1.getAllShown()
-    playerUpperBounds = [player1.getPos("x") + 7.5, player1.getPos("y") + 7.5, player1.getPos("z") + 7.5]
-    playerLowerBounds = [player1.getPos("x") - 7.5, player1.getPos("y") - 7.5, player1.getPos("z") - 7.5]
+    playerUpperBounds = [player1.getPos("x") + 75, player1.getPos("y") + 75, player1.getPos("z") + 75]
+    playerLowerBounds = [player1.getPos("x") - 75, player1.getPos("y") - 75, player1.getPos("z") - 75]
     let fall = true
     for (let i = 0; i < shownTilesWithBounds.length; i++) {
         if (((shownTilesWithBounds[i].bounds.lowerX < playerUpperBounds[0]) && (shownTilesWithBounds[i].bounds.upperX > playerLowerBounds[0])) && ((shownTilesWithBounds[i].bounds.lowerZ < playerUpperBounds[2]) && (shownTilesWithBounds[i].bounds.upperZ > playerLowerBounds[2]))) {
             if (playerUpperBounds[1] <= shownTilesWithBounds[i].bounds.lowerY){
                 fall = false
-                player1.setPos(player1.getPos("x"), player1.getPos("y") + 0.075, player1.getPos("z"))
+                player1.setPos(player1.getPos("x"), player1.getPos("y") + 0.75, player1.getPos("z"))
             }
         }
     }
@@ -40,7 +40,11 @@ function playerFall(rate) {
 }
 
 function gameOverDetection(){
-    if(player1.getPos("y") >= 45){
-        gameState = "gameOver"
+    if(player1.getPos("y") >= 450){
+        if (score <= 250){
+            console.log("Grace period")
+        } else {
+            gameState = "gameOver"
+        }
     }
 }
