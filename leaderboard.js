@@ -49,7 +49,7 @@ function leaderboardDisplay() {
         inp.hide()
         mainMenuButton.draw()
         for (let i = 0; i < leaderboardData.length; i++) {
-            if (leaderboardData[i].displayName == displayName) {
+            if (leaderboardData[i].displayName == displayName && score == leaderboardData[i].score) {
                 place = i + 1
                 resultID = leaderboardData[i].resultID
             }
